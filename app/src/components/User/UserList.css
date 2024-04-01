@@ -1,0 +1,72 @@
+/* Responsive styles for UserList component */
+.user-list-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .user-list-container h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .user-list-container table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .user-list-container th,
+  .user-list-container td {
+    padding: 8px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  .user-list-container th {
+    background-color: #f2f2f2;
+  }
+  
+  .user-list-container tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .user-list-container tbody tr:hover {
+    background-color: #ddd;
+  }
+  
+  .user-list-container button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+    margin-right: 5px;
+  }
+  
+  .user-list-container button:hover {
+    background-color: #45a049;
+  }
+  
+  .user-list-container .pagination {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .user-list-container .pagination button {
+    margin: 0 5px;
+  }
+  
+  /* Responsive styles */
+  @media screen and (max-width: 768px) {
+    .user-list-container th,
+    .user-list-container td {
+      padding: 6px;
+    }
+    
+    .user-list-container button {
+      padding: 6px 12px;
+    }
+  }
+  

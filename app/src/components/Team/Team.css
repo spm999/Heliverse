@@ -1,0 +1,123 @@
+/* Style for the form */
+form {
+    margin-bottom: 20px;
+  }
+  
+  /* Style for the table */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  /* Style for table header */
+  th {
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  /* Style for table cells */
+  td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  /* Style for pagination buttons */
+  button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    margin-right: 5px;
+  }
+/* Assuming the parent container of the button is a div with class 'buttonContainer' */
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+  }
+  
+  button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    width:30%;
+    border: none;
+    cursor: pointer;
+    margin-right: 5px;
+    text-align: center;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  /* Style for error message */
+  .error-message {
+    color: red;
+    margin-bottom: 10px;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    /* Stack table rows on smaller screens */
+    table tbody tr {
+      display: block;
+      margin-bottom: 10px;
+    }
+  
+    /* Hide table header on smaller screens */
+    table thead {
+      display: none;
+    }
+  
+    /* Style for table cells on smaller screens */
+    td {
+      border: none;
+      border-bottom: 1px solid #ddd;
+      display: block;
+      text-align: right; /* Align text to the right */
+    }
+  
+    /* Style for checkbox column */
+    td:first-child {
+      text-align: left; /* Align text to the left */
+    }
+  
+    /* Style for pagination buttons */
+    button {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  }
+
+  .teamName {
+    margin-bottom: 20px;
+  }
+  
+  .teamName label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .teamName input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  .teamName input[type="text"]:focus {
+    outline: none;
+    border-color: #007bff;
+  }
+
+  .pagination{
+    text-align: center;
+  }
+  
