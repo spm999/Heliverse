@@ -22,7 +22,7 @@ function AddUser() {
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.post('http://localhost:3000/api/users', formData);
+      await axios.post('https://heliverse-3f2v.onrender.com/api/users', formData);
       alert('User added successfully!');
       // Clear the form data after successful submission
       setFormData({
