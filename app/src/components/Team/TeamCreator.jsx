@@ -15,10 +15,10 @@ const TeamCreator = () => {
   useEffect(() => {
     const fetchUsersAndTeams = async () => {
       try {
-        const usersResponse = await axios.get('http://localhost:3000/api/users?availability=true');
+        const usersResponse = await axios.get('https://heliverse-3f2v.onrender.com/api/users?availability=true');
         setUsers(usersResponse.data.users);
 
-        const teamsResponse = await axios.get('http://localhost:3000/api/team');
+        const teamsResponse = await axios.get('https://heliverse-3f2v.onrender.com/api/team');
         setTeams(teamsResponse.data.teams);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -54,7 +54,7 @@ const TeamCreator = () => {
     }
   
     try {
-      const response = await axios.post('http://localhost:3000/api/team', {
+      const response = await axios.post('https://heliverse-3f2v.onrender.com/api/team', {
         name: name,
         users: selectedUsers.map(user => user.userId)
       });
@@ -65,11 +65,11 @@ const TeamCreator = () => {
       setErrorMessage('');
   
       // Fetch updated teams from the server
-      const updatedTeamsResponse = await axios.get('http://localhost:3000/api/team');
+      const updatedTeamsResponse = await axios.get('https://heliverse-3f2v.onrender.com/api/team');
       setTeams(updatedTeamsResponse.data.teams);
   
       // Fetch updated list of available users
-      const updatedUsersResponse = await axios.get('http://localhost:3000/api/users?availability=true');
+      const updatedUsersResponse = await axios.get('https://heliverse-3f2v.onrender.com/api/users?availability=true');
       setUsers(updatedUsersResponse.data.users);
   
       // Add selected users to the teamedUsers list
@@ -82,15 +82,15 @@ const TeamCreator = () => {
   
   const handleDeleteTeam = async (teamId) => {
     try {
-      await axios.delete(`http://localhost:3000/api/team/${teamId}`);
+      await axios.delete(`https://heliverse-3f2v.onrender.com/api/team/${teamId}`);
       console.log('Team deleted');
   
       // Fetch updated teams from the server
-      const updatedTeamsResponse = await axios.get('http://localhost:3000/api/team');
+      const updatedTeamsResponse = await axios.get('https://heliverse-3f2v.onrender.com/api/team');
       setTeams(updatedTeamsResponse.data.teams);
   
       // Fetch updated list of available users
-      const updatedUsersResponse = await axios.get('http://localhost:3000/api/users?availability=true');
+      const updatedUsersResponse = await axios.get('https://heliverse-3f2v.onrender.com/api/users?availability=true');
       setUsers(updatedUsersResponse.data.users);
   
       // Find the team that is being deleted
