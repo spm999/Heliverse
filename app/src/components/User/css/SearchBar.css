@@ -1,0 +1,18 @@
+.SearchBar {
+    width: 100%;
+  }
+  
+  .SearchBar input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  .SearchBar input[type="text"]:focus {
+    outline: none;
+    border-color: #007bff;
+  }
+  

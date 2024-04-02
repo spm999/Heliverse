@@ -5,7 +5,7 @@ import SearchBar from './SearchBar';
 import Filter from './Filter';
 import { Link } from 'react-router-dom'; // Import useHistory for navigation
 import EditUserForm from './EditUserForm';
-
+import './css/UserList.css'
 
 function UserList() {
   const [users, setUsers] = useState([]);
@@ -14,6 +14,8 @@ function UserList() {
   const [totalPages, setTotalPages] = useState(1);
   const [filterCriteria, setFilterCriteria] = useState({});
   const [editUserData, setEditUserData] = useState(null); // State to store data for editing
+  const [showEditForm, setShowEditForm] = useState(false);
+
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -65,6 +67,8 @@ function UserList() {
   };
 
   const handleEdit = async (userId) => {
+    setShowEditForm(true);
+
     // Fetch user data for the selected user
     try {
       const response = await axios.get(`http://localhost:3000/api/users/${userId}`);
@@ -102,21 +106,23 @@ function UserList() {
     }
   };
 
+
   if (loading) {
     return <div>Loading...</div>;
   }
 
   return (
     <div>
-      <Link to="/create-team">Create Team</Link>
+      <Link to="/create-team" className="create-team-link">Create Team</Link>
 
       <AddUser />
-      <h1>User List</h1>
+      <h1 style={{ textAlign: "center" }}>User List</h1>
       <SearchBar onSearch={handleSearch} />
       <Filter onFilterChange={handleFilterChange} />
       <table>
         <thead>
           <tr>
+            <th>Avatar</th>
             <th>Name</th>
             <th>Email</th>
             <th>Gender</th>
@@ -128,6 +134,9 @@ function UserList() {
         <tbody>
           {users.map(user => (
             <tr key={user.userId}>
+              <td>
+                <img src={user.avatar} alt="Avatar" style={{ width: '50px', height: '50px' }} />
+              </td>
               <td>{user.first_name} {user.last_name}</td>
               <td>{user.email}</td>
               <td>{user.gender}</td>
@@ -141,19 +150,22 @@ function UserList() {
           ))}
         </tbody>
       </table>
-      <div style={{textAlign:"center"}}>
+      <div style={{ textAlign: "center" }}>
         <button onClick={handlePrevPage} disabled={currentPage === 1}>Previous Page</button>
         <span>Page {currentPage} of {totalPages}</span>
         <button onClick={handleNextPage} disabled={currentPage === totalPages}>Next Page</button>
       </div>
 
-      {/* Render EditUserForm component if editUserData is not null */}
       {editUserData && (
-        <EditUserForm
-          userData={editUserData}
-          onSave={handleSaveEdit}
-          onCancel={handleCancelEdit}
-        />
+        <div className="overlay">
+          <div className="modal">
+            <EditUserForm
+              userData={editUserData}
+              onSave={handleSaveEdit}
+              onCancel={handleCancelEdit}
+            />
+          </div>
+        </div>
       )}
     </div>
   );

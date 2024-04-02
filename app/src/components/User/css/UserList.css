@@ -69,4 +69,16 @@
       padding: 6px 12px;
     }
   }
+
+  .create-team-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    padding: 20px;
+    background-color: rgb(184, 183, 183);
+    width: fit-content; /* Ensure the link only takes the necessary width */
+    margin: 0 auto; /* Center horizontally */
+  }
   

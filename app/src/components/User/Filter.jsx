@@ -1,5 +1,6 @@
 // Filter.jsx
 import React, { useState } from 'react';
+import './css/Filter.css'
 
 function Filter({ onFilterChange }) {
   const [selectedDomain, setSelectedDomain] = useState('');
@@ -23,11 +24,11 @@ function Filter({ onFilterChange }) {
     setSelectedAvailability(availability);
     onFilterChange({ domain: selectedDomain, gender: selectedGender, availability });
   };
-  
+
 
   return (
-    <div>
-      <div>
+    <div className="FilterContainer">
+      <div className="FilterItem">
         <label htmlFor="domainFilter">Domain:</label>
         <select id="domainFilter" value={selectedDomain} onChange={handleDomainChange}>
           <option value="">All</option>
@@ -40,7 +41,7 @@ function Filter({ onFilterChange }) {
           {/* Add other domain options here */}
         </select>
       </div>
-      <div>
+      <div className="FilterItem">
         <label htmlFor="genderFilter">Gender:</label>
         <select id="genderFilter" value={selectedGender} onChange={handleGenderChange}>
           <option value="">All</option>
@@ -49,7 +50,7 @@ function Filter({ onFilterChange }) {
           {/* Add other gender options here */}
         </select>
       </div>
-      <div>
+      <div className="FilterItem">
         <label htmlFor="availabilityFilter">Availability:</label>
         <select id="availabilityFilter" value={selectedAvailability} onChange={handleAvailabilityChange}>
           <option value="">All</option>
@@ -58,6 +59,7 @@ function Filter({ onFilterChange }) {
         </select>
       </div>
     </div>
+
   );
 }
 

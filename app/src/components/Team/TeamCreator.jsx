@@ -47,6 +47,12 @@ const TeamCreator = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+  
+    if (selectedUsers.length === 0) {
+      setErrorMessage('Please select at least one user to create a team.');
+      return;
+    }
+  
     try {
       const response = await axios.post('http://localhost:3000/api/team', {
         name: name,
@@ -57,15 +63,15 @@ const TeamCreator = () => {
       setName('');
       setSelectedUsers([]);
       setErrorMessage('');
-
+  
       // Fetch updated teams from the server
       const updatedTeamsResponse = await axios.get('http://localhost:3000/api/team');
       setTeams(updatedTeamsResponse.data.teams);
-
-      // Filter out selected users from the list of available users
-      const updatedUsers = users.filter(user => !selectedUsers.map(u => u.userId).includes(user.userId));
-      setUsers(updatedUsers);
-
+  
+      // Fetch updated list of available users
+      const updatedUsersResponse = await axios.get('http://localhost:3000/api/users?availability=true');
+      setUsers(updatedUsersResponse.data.users);
+  
       // Add selected users to the teamedUsers list
       setTeamedUsers([...teamedUsers, ...selectedUsers]);
     } catch (error) {
@@ -73,23 +79,23 @@ const TeamCreator = () => {
       setErrorMessage(error.response.data.message);
     }
   };
-
+  
   const handleDeleteTeam = async (teamId) => {
     try {
       await axios.delete(`http://localhost:3000/api/team/${teamId}`);
       console.log('Team deleted');
-
+  
       // Fetch updated teams from the server
       const updatedTeamsResponse = await axios.get('http://localhost:3000/api/team');
       setTeams(updatedTeamsResponse.data.teams);
-
+  
+      // Fetch updated list of available users
+      const updatedUsersResponse = await axios.get('http://localhost:3000/api/users?availability=true');
+      setUsers(updatedUsersResponse.data.users);
+  
       // Find the team that is being deleted
       const deletedTeam = teams.find(team => team.teamId === teamId);
       if (deletedTeam) {
-        // Move users from the deleted team back to the users list
-        const updatedUsers = [...users, ...deletedTeam.users];
-        setUsers(updatedUsers);
-
         // Remove users from the deleted team from the teamedUsers list
         const updatedTeamedUsers = teamedUsers.filter(user => !deletedTeam.users.map(u => u.userId).includes(user.userId));
         setTeamedUsers(updatedTeamedUsers);
@@ -98,7 +104,7 @@ const TeamCreator = () => {
       console.error('Error deleting team:', error);
     }
   };
-
+  
   // Pagination
   const indexOfLastUser = currentPage * itemsPerPage;
   const indexOfFirstUser = indexOfLastUser - itemsPerPage;

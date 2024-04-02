@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './css/SearchBar.css'
 
 function SearchBar({ onSearch }) {
   const [searchTerm, setSearchTerm] = useState('');
@@ -11,7 +12,7 @@ function SearchBar({ onSearch }) {
   };
 
   return (
-    <form>
+    <form className='SearchBar'>
       <input
         type="text"
         placeholder="Search by name"

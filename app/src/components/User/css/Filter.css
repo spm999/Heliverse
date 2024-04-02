@@ -1,0 +1,13 @@
+.FilterContainer {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .FilterItem {
+  margin-right: 10%;
+  }
+  
+  .FilterItem label {
+    margin-right: 5px;
+  }
+  
