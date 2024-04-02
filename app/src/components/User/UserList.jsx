@@ -20,7 +20,7 @@ function UserList() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        let url = `http://localhost:3000/api/users?page=${currentPage}`;
+        let url = `https://heliverse-3f2v.onrender.com/api/users?page=${currentPage}`;
 
         const filterParams = new URLSearchParams(filterCriteria).toString();
         if (filterParams) {
@@ -59,7 +59,7 @@ function UserList() {
 
   const handleSearch = async (searchTerm) => {
     try {
-      const response = await axios.get(`http://localhost:3000/api/users?search=${searchTerm}`);
+      const response = await axios.get(`https://heliverse-3f2v.onrender.com/api/users?search=${searchTerm}`);
       setUsers(response.data.users);
     } catch (error) {
       console.error('Error searching users:', error);
@@ -71,7 +71,7 @@ function UserList() {
 
     // Fetch user data for the selected user
     try {
-      const response = await axios.get(`http://localhost:3000/api/users/${userId}`);
+      const response = await axios.get(`https://heliverse-3f2v.onrender.com/api/users/${userId}`);
       const userData = response.data;
       setEditUserData(userData); // Set the data for editing
     } catch (error) {
@@ -81,7 +81,7 @@ function UserList() {
 
   const handleSaveEdit = async (editedUserData) => {
     try {
-      const response = await axios.put(`http://localhost:3000/api/users/${editedUserData.userId}`, editedUserData);
+      const response = await axios.put(`https://heliverse-3f2v.onrender.com/api/users/${editedUserData.userId}`, editedUserData);
       // Update the user in the list
       setUsers(users.map(user => (user.userId === editedUserData.userId ? response.data : user)));
       setEditUserData(null); // Clear editUserData state
@@ -98,7 +98,7 @@ function UserList() {
   const handleDelete = async (userId) => {
     // Implement logic to delete user
     try {
-      await axios.delete(`http://localhost:3000/api/users/${userId}`);
+      await axios.delete(`https://heliverse-3f2v.onrender.com/api/users/${userId}`);
       setUsers(users.filter(user => user.userId !== userId));
       console.log(`Deleted user with ID ${userId}`);
     } catch (error) {
